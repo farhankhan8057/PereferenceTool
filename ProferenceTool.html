@@ -1,0 +1,1265 @@
+<html>
+    <head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+      <!-- Add this in the <head> of your HTML -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+        <title>Pref_DE</title>
+        <style>
+        h1 {
+        text-align: center;
+        font-weight: 700;
+        margin-top: 20px;
+        font-size: 36px;
+        color: #2c3e50;
+    }
+
+    h2 {
+        font-size: 22px;
+        color: #34495e;
+        margin-left: 30px;
+    }
+
+        .lab {
+            /* padding: 5px 30px; */
+            width: auto;
+            /* border-radius: 10px; */
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            /* cursor: pointer;
+            display: inline-block; */
+        }
+
+        .bdy {
+            font-family: 'Open Sans', sans-serif;
+            padding-top: 100px;
+        }
+
+        #myform_firstname_error {
+            display: flex;
+            margin-left: 10px;
+            font-size: 16px;
+            color: #eb1313;
+            /* position: fixed;
+            top: 170px;
+            left: 170px; */
+        }
+
+        .table-wrapper {
+        flex: 1;
+    overflow-x: auto;
+    margin-top: 20px;
+        }
+        .main-content {
+    padding: 0 30px;
+    }
+
+    .form-container {
+    align-self: flex-start;
+max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+ display: block;
+    }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .inputt {
+            padding: 2px 10px;
+            width: auto;
+            border-radius: 10px;
+            background: #f2f2f25c;
+            border: 1px solid rgb(202, 202, 202);
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            display: inline-block;
+           font-family: 'Open Sans', sans-serif;
+            font-weight: normal;
+        }
+
+
+
+
+        /* Table Scroll */
+        .fixed_header {
+            width: 95%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        .fixed_header tbody {
+            overflow: auto !important;
+            height: auto !important;
+            width: 100%;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .fixed_header thead tr,
+        .fixed_header tbody tr {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: Center;
+        }
+
+        /*
+            .fixed_header thead {
+            background: black;
+            color: #fff;
+            } */
+
+        .fixed_header th,
+        .fixed_header td {
+            padding: 5px;
+            /* text-align: left; */
+            width: 20%;
+        }
+
+        /*
+            .fixed_header th:last-child {
+            padding-right: 11px;
+            } */
+
+        body {
+        font-family: 'Open Sans', sans-serif;
+        background: #f7f8fc;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    label.lab {
+        font-size: 18px;
+        color: #2c3e50;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    input.inputt, input.Descripttion, select {
+        font-size: 16px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        width: 250px;
+        background: #fafafa;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input.inputt:focus,
+    input.Descripttion:focus,
+    select:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        outline: none;
+        background-color: #fff;
+    }
+
+
+
+
+    table {
+        width: 95%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        vertical-align: top;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    th {
+        background-color: #ecf0f1;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    td span.label {
+        font-weight: 500;
+    }
+
+    input.edit-input {
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        display: none;
+        width: 90%;
+    }
+
+    button.edit-btn {
+        background-color: #667eea;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    button.edit-btn:hover {
+        background-color:#5a6edc;
+    }
+
+    .error {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        padding: 0 30px;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    }
+
+    /* Modal Content Box */
+    .modal-content {
+   background-color: #fefefe;
+  margin: 5% auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    font-family: 'Open Sans', sans-serif;
+    }
+    @media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+    @keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    }
+
+    .modal-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 24px;
+    }
+
+    /* Form Elements */
+    .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #34495e;
+    font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+    border-color: #5dade2;
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.4);
+    outline: none;
+    background-color: #fff;
+    }
+
+    /* Button Group - Centered */
+    .form-actions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    }
+
+    /* Primary Save Button */
+    .btn-primary {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    }
+
+    .btn-primary:hover {
+    background-color:#5a6edc;
+    }
+
+    /* Secondary Cancel Button */
+    .btn-secondary {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+    background-color: #c0392b;
+    }
+    .button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 30px;
+    }
+    .header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 20px 20px;
+    padding: 20px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999; /* keep it above other content */
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    @media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title {
+        font-size: 18px;
+        white-space: normal;
+        text-align: right;
+    }
+    }
+    .title {
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 30px;
+        color: #667eea;
+    text-align: right;
+        font-weight: 500;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        background: transparent;
+    }
+
+    .logo img {
+    background-color: transparent !important;
+    }
+    .logo::before {
+                font-size: 48px;
+                background: none;
+                -webkit-text-fill-color: #667eea;
+                animation: pulse 2s ease-in-out infinite;
+            }
+            /* Toggle Switch Style */
+            .switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    display:none;
+    }
+
+    .switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    .slider {
+    position: relative;
+    width: 46px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 30px;
+    transition: 0.3s;
+    cursor: pointer;
+    }
+
+    .slider::before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    }
+
+    /* Toggle ON (checked) styles */
+    input:checked + .slider {
+    background-color: #4CAF50;
+    }
+    input:checked + .slider::before {
+    transform: translateX(22px);
+    }
+
+    .site-footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #000000;
+    font-size: 14px;
+    color: #ffffff;
+    }
+    .switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+    input.edit-input {
+    display: none;
+    }
+
+    form#modalForm {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical; /* allow vertical resize */
+        min-height: 40px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 80px; /* initial height */
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .form-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #667eea;
+        border: none;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    border-radius: 17px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a6edc;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+        form#modalForm {
+        padding: 0.5rem;
+        }
+    }
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    table.table-scroll {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+        min-width: 900px;
+    }
+    .id-cell {
+        width: 60px;
+    }
+    .pref-desc-label,
+    .pref-name-label {
+        display: block;
+        max-width: 200px;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    .edit-input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .switch input:checked + .slider {
+        background-color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+        .table-scroll {
+        font-size: 14px;
+        }
+    }
+    @keyframes slideOutRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100%); }
+    }
+    @keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+#successMessage {
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.hide-col {
+        display: none;
+    }
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 10001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+        </style>
+
+    </head>
+        %%[
+    SET @existShowVal = RequestParameter("existShowVal")
+    ]%%
+<script>
+function savePreference(event) {
+    if (event) event.preventDefault();
+
+    const loader = document.getElementById("loaderOverlay");
+    const messageBox = document.getElementById("messageBox");
+    loader.style.display = "flex";
+    messageBox.innerHTML = "";
+
+    const prefName = document.getElementById("inputField").value.trim();
+    const category = document.getElementById("preferenceSelect").value.trim();
+    const description = document.getElementById("descriptionField").value.trim();
+
+    if (!prefName || !category || !description) {
+        loader.style.display = "none";
+        messageBox.innerHTML = "<span style='color: red;'>Please fill out all fields.</span>";
+        return;
+    }
+
+    const data = {
+        Name: prefName,
+        BUID: category,
+        description: description,
+        ListId: ""
+    };
+
+    fetch("https://mc-zbtgvdlwk4v8ynz-yh08qzczy.pub.sfmc-content.com/b4jj0oki1s5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify([data])
+    })
+    .then(async (response) => {
+        loader.style.display = "none";
+        const responseText = await response.text();
+        console.log("Raw response text:", responseText);
+
+        // Extract preferenceExist from non-JSON response
+        const prefExistMatch = responseText.match(/preferenceExist\s*:\s*"?true"?/i);
+
+        if (prefExistMatch) {
+            messageBox.innerHTML = "<span style='color: red;'>Preference already exists.</span>";
+            return;
+        }
+
+        messageBox.innerHTML = "<span style='color: green;'>Preference saved successfully.</span>";
+        document.getElementById("modalForm").reset();
+        setTimeout(() => location.reload(), 2000);
+    })
+    .catch(error => {
+        loader.style.display = "none";
+        console.error("Fetch error:", error);
+        messageBox.innerHTML = "<span style='color: red;'>Network error occurred.</span>";
+    });
+}
+
+</script>
+
+    <body class="bdy">
+    %%[ IF NOT EMPTY(@successMsg) THEN ]%%
+    <div id="successMessage" style="position: fixed; top: 80px; right: 30px; background-color: #28a745; color: white; padding: 12px 20px; border-radius: 6px; z-index: 9999; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    ✓ %%=v(@successMsg)=%%
+    </div>
+    %%[ ENDIF ]%%
+
+        <div class="header">
+                <div class="logo"><a href="https://www.icreon.com/"><img src="https://image.s11.sfmc-content.com/lib/fe3211717164077b741174/m/1/93f79ca5-1fe1-46f1-abb7-f588a42fa7da.png" alt="Icreon" width="200" height="37"></a></div>
+                <div class="title">Preference Management Tool</div>
+            </div>
+        <div>
+
+            <!-- Overview Section -->
+<div style="padding: 20px; background-color: #f8f9fa; border-bottom: 1px solid #ddd;">
+  <h2 style="margin-top: 0; color: #333;">Information</h2>
+
+  <!-- Removed max-width -->
+  <p style="line-height: 1.6; color: #555;">
+    The Preference Management Tool is a dynamic, user-friendly interface designed to help administrators easily manage user preferences across different business units. With this tool, you can add new preferences, edit existing ones, and organize them by categories. The tool features real-time validation, status toggles, dynamic sorting, and feedback messaging to streamline the management process.
+  </p>
+
+  <!-- Optional: remove max-width from <ul> as well -->
+  <ul style="color: #555; padding-left: 20px; line-height: 1.6;">
+    <li>Add, edit, and manage user preferences by business unit.</li>
+    <li>Real-time validation to prevent duplicate entries.</li>
+    <li>Dynamic sorting by preference name or status.</li>
+    <li>Status toggles for enabling or disabling preferences.</li>
+    <li>Clear success and error feedback messages.</li>
+    <li>Responsive design for consistent user experience.</li>
+  </ul>
+</div>
+
+    <!-- Start  -->
+
+            <div class="main-content">
+    <!-- Left Side: Add Preference Form -->
+ <!-- Modal for Add New Preference -->
+<div id="addPreferenceModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()" style="float:right; font-size: 24px; cursor: pointer;">&times;</span>
+    <h2>Add New Preference</h2>
+    <form id="modalForm">
+      <div class="form-group">
+        <label for="inputField">Preference Name<span style="color:red">*</span></label>
+        <input type="text" name="inputField" id="inputField" required placeholder="e.g., Weekly Newsletter" />
+        %%[ IF NOT EMPTY(@existShowVal) THEN ]%%
+        <div style="color: red; font-size: 14px; margin-top: 5px;">
+          %%=v(@existShowVal)=%%
+        </div>
+        %%[ ENDIF ]%%
+      </div>
+
+      <div class="form-group">
+        <label for="preferenceSelect">Select a Category<span style="color:red">*</span></label>
+        <select name="preferenceSelect" id="preferenceSelect" required class="inputt">
+          <script runat="server">
+            Platform.Load("core","1.1");
+            try {
+              var deCat = DataExtension.Init("0E4DBF0E-28AD-49AF-9928-3BDB978BC65B");
+              var catRows = deCat.Rows.Retrieve();
+              for (var i in catRows) {
+                Write("<option value='" + catRows[i]["BU_Id"] + "'>" + catRows[i]["BU_Name"] + "</option>");
+              }
+            } catch (e) { Write("<!-- Category DE retrieval failed -->"); }
+          </script>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="descriptionField">Description<span style="color:red">*</span></label>
+        <textarea name="descriptionField" id="descriptionField" required placeholder="Short description"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" onclick="savePreference()">Save</button>
+        <div id="messageBox"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+            <div class="table-wrapper">
+    </div>
+            <table>
+                <tr style="display: flex;">
+                    <div class="button-wrapper">
+          </div>
+
+    </tr>
+            </table>
+
+            </div>
+        <!-- Form 2 End -->
+
+ <div style="display: flex; justify-content: space-between; align-items: center; margin: 0 10px; flex-wrap: wrap;">
+
+  <div style="flex: 1; text-align: center;">
+    <h2 style="font-size: 28px; font-weight: 700; color: #667eea; margin: 0; display: inline-flex; align-items: center;">
+      <span style="margin-right: 8px;">
+        <i style='font-size:24px' class='far'>&#xf15c;</i> All Records
+      </span>
+    </h2>
+  </div>
+
+  <!-- Button aligned to right -->
+  <div style="text-align: right;">
+    <button onclick="openModal()" style="
+        background-color: #667eea;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+    ">+ New Pereference</button>
+  </div>
+
+</div>
+    <!--  Start SSJS -->
+           %%[
+        VAR @allPreferences, @q
+        set @VisibilityValue = AttributeValue("Visibility")
+        SET @VisibilityValue = "True"
+SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "Visibility", @VisibilityValue)
+        SET @prefRowCount = rowcount(@prefDERows)
+        IF NOT EMPTY(@prefRowCount) THEN
+        ]%%
+
+    <div class="table-container">
+        <table class="table-scroll small-first-col fixed_header" align='center' style=" text-align: center;">
+    <thead>
+    <th class="b hide-col"> Id</th>
+    <th class="b hide-col">ListID</th>
+    <th class="b">BUName</th>
+   <th class="b" onclick="sortTableBy('pref-name-label')" style="cursor:pointer;">Preference Name &#8645;</th>
+   <th class="b" onclick="sortTableBy('pref-status-label')" style="cursor:pointer;"> Status &#8645;</th>
+    <th class="b">Description</th>
+    <th class="b">Added Date</th>
+     <th class="b">Edited Date</th>
+    <th class="b">Action</th>
+    </thead>
+    <tbody id="preferencesTableBody">
+            %%[
+            FOR @i = 1 TO @prefRowCount DO
+            SET @prefRow = row(@prefDERows, @i)
+            SET @prefID = FIELD(@prefRow, "Id")
+            SET @prefName = FIELD(@prefRow, "Preference_Name")
+            SET @prefStatus = FIELD(@prefRow, "Status")
+            SET @prefAddDate = FIELD(@prefRow, "Added_Date")
+            SET @prefEditDate = FIELD(@prefRow, "Edit_Date")
+            SET @prefListId = FIELD(@prefRow, "ListId")
+            SET @prefMID = FIELD(@prefRow, "MID")
+            SET @prefDesc = FIELD(@prefRow, "Description")
+            SET @bUName = Lookup("Business_Unit_DE", "BU_Name", "BU_Id", @prefMID)
+            VAR @pStatus
+            IF @prefStatus == "True" THEN
+            SET @pStatus = "checked"
+            ENDIF
+
+            ]%%
+    <tr>
+    <!-- Id -->
+    <td class="b id-cell hide-col">%%=v(@prefID)=%%</td>
+
+    <!-- ListID -->
+    <td class="b hide-col">%%=v(@prefListId)=%%</td>
+
+    <!-- MID -->
+    <td class="b">%%=v(@bUName)=%%</td>
+
+    <!-- Preference Name -->
+    <td>
+        <span class="pref-name-label">%%=v(@prefName)=%%</span>
+        <input type="text" class="pref-name-input edit-input" value="%%=v(@prefName)=%%" />
+    </td>
+
+    <!-- Status -->
+    <td>
+        <span class="pref-status-label">%%=IIF(@prefStatus=="True","Active","Inactive")=%%</span>
+        <label class="switch">
+        <input type="checkbox" class="pref-status-input" %%=IIF(@prefStatus=="True","checked","")=%% disabled>
+        <span class="slider"></span>
+        </label>
+    </td>
+
+    <!-- Description -->
+    <td>
+        <span class="pref-desc-label">%%=v(@prefDesc)=%%</span>
+        <input type="text" class="pref-desc-input edit-input" value="%%=v(@prefDesc)=%%" />
+    </td>
+
+    <!-- Added Date -->
+    <td class="b">%%=v(@prefAddDate)=%%</td>
+
+    <!-- Edited Date -->
+    <td class="b">%%=v(@prefEditDate)=%%</td>
+
+    <!-- Action -->
+    <td>
+        <button type="button" class="edit-btn" data-mid="%%=v(@prefMID)=%%" onclick="EditFunc(this)">Edit</button>
+    </td>
+    </tr>
+
+ %%[
+             NEXT @i
+            ]%%
+
+    </tbody>
+
+    </table>
+    </div>
+      %%[ ELSE ]%%
+<div class="table-container" style="text-align: center; padding: 40px 20px;">
+<p style="font-size: 18px; color: #999;">⚠️ No preferences found. Please add a new preference to get started.</p>
+</div>
+%%[ENDIF]%%
+    <!-- Floating Help Icon -->
+<!-- Floating Help Icon -->
+<div id="helpIcon" onclick="openHelpModal()" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #667eea;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+">
+  ?
+</div>
+<!-- Help Modal Panel (Bottom-Left) -->
+<div id="helpModal" style="
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 10001;
+    padding: 20px;
+    font-size: 14px;
+">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <strong style="font-size: 16px;">Help & Instructions</strong>
+    <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px;">&times;</span>
+  </div>
+  <p>This section provides guidance on how to manage and understand communication preferences effectively.
+     Below, each field is explained to help you navigate and configure preferences for your organization or users.
+     Use this information to ensure preferences are clearly labeled, up to date, and accurately categorized.</p>
+  <hr>
+  <ul style="padding-left: 18px; line-height: 1.6;">
+    <li><strong>Preference Name</strong>: The label of the preference (e.g., Weekly Newsletter).</li>
+    <li><strong>Status</strong>: Indicates if the preference is Active or Inactive.</li>
+    <li><strong>Description</strong>: Short summary of the preference purpose.</li>
+    <li><strong>BU Name</strong>: Business unit this preference belongs to.</li>
+    <li><strong>Added/Edited Date</strong>: Creation and last update timestamps.</li>
+    <li><strong>Action</strong>: Edit button to modify existing preferences.</li>
+  </ul>
+</div>
+    <!--  Edit button functionlaity -->
+        %%[
+
+            SET @prefLisID = RequestParameter("editPrefId")
+
+            ]%%
+
+        <!--  Edit button functionlaity -->
+            %%[
+
+            SET @prefLisID = RequestParameter("editPrefId")
+
+            ]%%
+        <br>
+        <br>
+        <br>
+
+        <script>
+            function keyDown(e) {
+            var e = window.event || e;
+            var key = e.keyCode;
+            //space pressed
+            if (key == 32) {
+                e.preventDefault();
+            }
+
+            }
+
+        </script>
+        <!-- Form 1 End -->
+
+        <script runat="server">
+
+        </script>
+
+        <script>
+    function validateForm() {
+        return true;
+    }
+
+    document.getElementById("modalForm").addEventListener("submit", function(event) {
+        const isValid = validateForm();
+        const messageBox = document.getElementById("messageBox");
+
+        if (!isValid) {
+            event.preventDefault();
+            messageBox.innerHTML = "<span style='color: red;'> Error: Please correct the form.</span>";
+        }
+    });
+
+    function showError(element_id, message) {
+        var element = document.getElementById(element_id);
+        var error_div = document.createElement('div');
+        error_div.id = element_id + '_error';
+        error_div.className = 'error';
+        error_div.innerHTML = message;
+        element.parentNode.insertBefore(error_div, element.nextSibling);
+    }
+
+    function removeElementsByClass(rootElement, className) {
+        var elements = rootElement.getElementsByClassName(className);
+        while (elements.length > 0) {
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+    function removeErrorMessages() {
+        removeElementsByClass(document.getElementById('modalForm'), 'error');
+    }
+
+    const arryEditedData = [];
+const editedData = {};
+function truncateToFiveWords(text) {
+    const words = text.trim().split(/\s+/);
+    if (words.length <= 5) return text;
+    return words.slice(0, 5).join(" ") + " ...";
+}
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.pref-desc-label').forEach(span => {
+        const fullText = span.textContent.trim();
+        span.setAttribute('data-full', fullText);
+        span.setAttribute('title', fullText);     // show full text on hover
+        span.textContent = truncateToFiveWords(fullText);
+    });
+});
+
+function EditFunc(button) {
+    const row = button.closest("tr");
+    const isEditing = button.textContent === "Save";
+
+    const nameLabel = row.querySelector(".pref-name-label");
+    const statusLabel = row.querySelector(".pref-status-label");
+    const descLabel = row.querySelector(".pref-desc-label");
+
+    const nameInput = row.querySelector(".pref-name-input");
+    const statusInput = row.querySelector(".pref-status-input");
+    const descInput = row.querySelector(".pref-desc-input");
+    const statusSwitch = row.querySelector(".switch");
+
+    const prefId = row.querySelector('.id-cell').textContent.trim();
+    const listId = row.querySelector('td:nth-child(2)').textContent.trim();
+    const mid = button.dataset.mid;
+    const addedDate = row.querySelector('td:nth-child(7)').textContent.trim();
+
+    if (!isEditing) {
+        // Switch to Edit Mode
+        nameLabel.style.display = 'none';
+        statusLabel.style.display = 'none';
+        descLabel.style.display = 'none';
+
+        nameInput.style.display = 'inline-block';
+        descInput.style.display = 'inline-block';
+        statusInput.disabled = false;
+        statusSwitch.style.display = 'inline-flex';
+
+        button.textContent = 'Save';
+    } else {
+        // Save Changes
+        const newName = nameInput.value.trim();
+        const newStatus = statusInput.checked ? 'True' : 'False';
+        const newDesc = descInput.value.trim();
+        const editedDate = new Date().toISOString();
+
+        nameLabel.textContent = newName || 'N/A';
+        statusLabel.textContent = newStatus === 'True' ? 'Active' : 'Inactive';
+
+        // Apply truncation for display
+        const truncatedDesc = truncateToFiveWords(newDesc || '');
+        descLabel.textContent = truncatedDesc;
+        descLabel.setAttribute('title', newDesc); // hover shows full
+
+        nameLabel.style.display = 'inline-block';
+        statusLabel.style.display = 'inline-block';
+        descLabel.style.display = 'inline-block';
+
+        nameInput.style.display = 'none';
+        descInput.style.display = 'none';
+        statusInput.disabled = true;
+        statusSwitch.style.display = 'none';
+
+        button.textContent = 'Edit';
+
+        const rowData = {
+            id: prefId,
+            Name: newName,
+            status: newStatus,
+            description: newDesc,
+            BUID: mid,
+            ListId: listId,
+            addedDate: addedDate,
+            editedDate: editedDate
+        };
+
+        editedData[prefId] = rowData;
+        arryEditedData.push(rowData);
+
+        console.log("Edited Data Array:", arryEditedData);
+
+        UpdatePreference(rowData);
+    }
+}
+
+
+function UpdatePreference(data) {
+    const loader = document.getElementById("loaderOverlay");
+    const messageBox = document.getElementById("messageBox");
+    loader.style.display = "flex";
+    messageBox.innerHTML = "";
+
+    fetch("https://mc-zbtgvdlwk4v8ynz-yh08qzczy.pub.sfmc-content.com/b4jj0oki1s5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify([data])
+    })
+    .then(async (response) => {
+        loader.style.display = "none";
+        const responseText = await response.text();
+        console.log("Raw update response:", responseText);
+
+        const prefExistMatch = responseText.match(/preferenceExist\s*:\s*"?true"?/i);
+
+        if (prefExistMatch) {
+            messageBox.innerHTML = "<span style='color: red;'>Preference already exists. Please choose a different name.</span>";
+            return;
+        }
+
+        messageBox.innerHTML = "<span style='color: green;'>" + data.Name + " preference updated successfully.</span>";
+        setTimeout(() => messageBox.innerHTML = "", 5000); // auto-clear after 5s
+      setTimeout(() => location.reload(), 2000);
+    })
+    .catch(err => {
+        loader.style.display = "none";
+        console.error("Fetch failed:", err);
+        messageBox.innerHTML = "<span style='color: red;'>Network error occurred while updating preference.</span>";
+    });
+}
+
+    // Handle status checkboxes
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("tr").forEach(row => {
+            const statusLabel = row.querySelector(".pref-status-label");
+            const statusInput = row.querySelector(".pref-status-input");
+            if (statusLabel && statusInput) {
+                const isActive = statusLabel.textContent.trim().toLowerCase() === "active";
+                statusInput.checked = isActive;
+                statusInput.disabled = true;
+            }
+        });
+
+        const msgBox = document.getElementById("successMessage");
+        if (msgBox) {
+            setTimeout(() => {
+                msgBox.style.animation = 'slideOutRight 0.3s ease-in forwards';
+                setTimeout(() => {
+                    msgBox.remove();
+                }, 300);
+            }, 5000);
+        }
+    });
+        let sortDirection = {};
+function sortTableBy(className) {
+    const tbody = document.querySelector("tbody#preferencesTableBody");
+    if (!tbody) return;
+
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    sortDirection[className] = !sortDirection[className]; // toggle
+
+    rows.sort((a, b) => {
+        const valA = a.querySelector(`.${className}`)?.textContent.trim().toLowerCase() || "";
+        const valB = b.querySelector(`.${className}`)?.textContent.trim().toLowerCase() || "";
+
+        if (className === "pref-status-label") {
+            const weight = { active: 1, inactive: 2 };
+            return sortDirection[className] ? weight[valA] - weight[valB] : weight[valB] - weight[valA];
+        }
+        return sortDirection[className] ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    });
+
+    rows.forEach(row => tbody.appendChild(row));
+}
+
+window.onload = () => {
+    const successMsg = document.getElementById("successMessage");
+    if(successMsg) {
+        setTimeout(() => successMsg.style.display = "none", 3000);
+    }
+};
+function openModal() {
+  document.getElementById("addPreferenceModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("addPreferenceModal").style.display = "none";
+}
+
+// Optional: Close modal on outside click
+window.onclick = function(event) {
+  const modal = document.getElementById("addPreferenceModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Help Modal Functions
+    function openHelpModal() {
+    const helpModal = document.getElementById("helpModal");
+    const isVisible = helpModal.style.display === "block";
+    helpModal.style.display = isVisible ? "none" : "block";
+  }
+
+  function closeHelpModal() {
+    document.getElementById("helpModal").style.display = "none";
+  }
+
+  // Optional: Close when clicking outside the modal
+  window.addEventListener("click", function(event) {
+    const helpModal = document.getElementById("helpModal");
+    const helpIcon = document.getElementById("helpIcon");
+    if (
+      event.target !== helpModal &&
+      !helpModal.contains(event.target) &&
+      event.target !== helpIcon
+    ) {
+      helpModal.style.display = "none";
+    }
+  });
+</script>
+
+<div id="loaderOverlay" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 100000;
+    justify-content: center;
+    align-items: center;
+">
+    <div class="loader" style="
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    "></div>
+</div>
+        </div>
+        <footer class="site-footer">
+    &copy; 2025 Icreon. All rights reserved.
+    </footer>
+
+    </body>
+
+    </html>
