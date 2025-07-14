@@ -359,7 +359,7 @@ max-width: 700px;
     .button-wrapper {
     display: flex;
     justify-content: flex-end;
-    padding: 15px 30px;
+
     }
     .header {
     background: rgba(255, 255, 255, 0.95);
@@ -611,9 +611,46 @@ max-width: 700px;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
 }
+#helpIcon{
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #667eea;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0.5;
+}
+#helpIcon:hover {
+    opacity: 1;
+
+}
+
+.newPrefButton{
+    background-color: #667eea;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+}
+
+button.newPrefButton:hover {
+    background-color: #5a6edc;
+}
+
         </style>
 
     </head>
@@ -688,6 +725,42 @@ function savePreference(event) {
                 <div class="logo"><a href="https://www.icreon.com/"><img src="https://image.s11.sfmc-content.com/lib/fe3211717164077b741174/m/1/93f79ca5-1fe1-46f1-abb7-f588a42fa7da.png" alt="Icreon" width="200" height="37"></a></div>
                 <div class="title">Preference Management Tool</div>
             </div>
+
+<!--  Success Message Container -->
+<div id="globalSuccessMessage" style="
+    display: none;
+    position: fixed;
+    top: 90px;
+    right: 30px;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    z-index: 10000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+">
+    ✓ Updated successfully.
+</div>
+
+<script>
+function showGlobalSuccess(message) {
+    const globalBox = document.getElementById("globalSuccessMessage");
+    globalBox.textContent = "✓ " + message;
+    globalBox.style.display = "block";
+    globalBox.style.opacity = "1";
+
+    setTimeout(() => {
+        globalBox.style.transition = "opacity 0.5s ease";
+        globalBox.style.opacity = "0";
+        setTimeout(() => {
+            globalBox.style.display = "none";
+            globalBox.style.opacity = "1";
+        }, 500);
+    }, 5000);
+}
+</script>
+
         <div>
 
             <!-- Overview Section -->
@@ -713,7 +786,6 @@ function savePreference(event) {
     <!-- Start  -->
 
             <div class="main-content">
-    <!-- Left Side: Add Preference Form -->
  <!-- Modal for Add New Preference -->
 <div id="addPreferenceModal" class="modal" style="display: none;">
   <div class="modal-content">
@@ -783,16 +855,8 @@ function savePreference(event) {
   </div>
 
   <!-- Button aligned to right -->
-  <div style="text-align: right;">
-    <button onclick="openModal()" style="
-        background-color: #667eea;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 600;
-    ">+ New Pereference</button>
+  <div  style="text-align: right;">
+    <button class ="newPrefButton" onclick="openModal()">+ New Pereference</button>
   </div>
 
 </div>
@@ -896,23 +960,7 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
 %%[ENDIF]%%
     <!-- Floating Help Icon -->
 <!-- Floating Help Icon -->
-<div id="helpIcon" onclick="openHelpModal()" style="
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #667eea;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 10000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-">
+<div  id="helpIcon" onclick="openHelpModal()">
   ?
 </div>
 <!-- Help Modal Panel (Bottom-Left) -->
@@ -934,7 +982,7 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
 ">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <strong style="font-size: 16px;">Help & Instructions</strong>
-    <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px;">&times;</span>
+    <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px; color: #f80505;">&times;</span>
   </div>
   <p>This section provides guidance on how to manage and understand communication preferences effectively.
      Below, each field is explained to help you navigate and configure preferences for your organization or users.
@@ -1135,7 +1183,7 @@ function UpdatePreference(data) {
             return;
         }
 
-        messageBox.innerHTML = "<span style='color: green;'>" + data.Name + " preference updated successfully.</span>";
+        showGlobalSuccess("Preference updated successfully.");
         setTimeout(() => messageBox.innerHTML = "", 5000); // auto-clear after 5s
       setTimeout(() => location.reload(), 2000);
     })
