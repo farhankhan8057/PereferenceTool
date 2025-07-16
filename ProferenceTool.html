@@ -31,7 +31,7 @@
         }
 
         .bdy {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'freight-sans-pro', sans-serif;
             padding-top: 100px;
         }
 
@@ -88,7 +88,7 @@ max-width: 700px;
             color: rgb(0, 0, 0);
             cursor: pointer;
             display: inline-block;
-           font-family: 'Open Sans', sans-serif;
+           font-family: 'freight-sans-pro', sans-serif;
             font-weight: normal;
         }
 
@@ -137,7 +137,7 @@ max-width: 700px;
             } */
 
         body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'freight-sans-pro', sans-serif;
         background: #f7f8fc;
         margin: 0;
         padding: 0;
@@ -258,7 +258,8 @@ max-width: 700px;
   border-radius: 10px;
   position: relative;
   box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'freight-sans-pro', sans-serif;
+
     }
     @media (max-width: 768px) {
   .modal-content {
@@ -484,7 +485,7 @@ max-width: 700px;
         margin: 0 auto;
         padding: 1rem;
         box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'freight-sans-pro', sans-serif;
     }
     .form-group {
         margin-bottom: 1rem;
@@ -512,7 +513,7 @@ max-width: 700px;
 
     textarea {
         min-height: 80px; /* initial height */
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'freight-sans-pro', sans-serif;
     }
 
     .form-actions {
@@ -651,6 +652,30 @@ button.newPrefButton:hover {
     background-color: #5a6edc;
 }
 
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border-radius: 0.25em;
+    background-color: #e04444;
+    border: none;
+}
+        .close-button:hover,
+          dialog.ui-modal button.dialog-close:hover {
+          background-color: #c83a3a;
+        }
+        #advanced-options-close {
+  color: white;
+}
+
+
         </style>
 
     </head>
@@ -658,7 +683,7 @@ button.newPrefButton:hover {
     SET @existShowVal = RequestParameter("existShowVal")
     ]%%
 <script>
-function savePreference(event) {
+    function savePreference(event) {
     if (event) event.preventDefault();
 
     const loader = document.getElementById("loaderOverlay");
@@ -714,6 +739,8 @@ function savePreference(event) {
 
 </script>
 
+
+
     <body class="bdy">
     %%[ IF NOT EMPTY(@successMsg) THEN ]%%
     <div id="successMessage" style="position: fixed; top: 80px; right: 30px; background-color: #28a745; color: white; padding: 12px 20px; border-radius: 6px; z-index: 9999; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
@@ -740,10 +767,43 @@ function savePreference(event) {
     font-weight: 600;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 ">
-    ✓ Updated successfully.
+   &#9989; Updated successfully.
 </div>
 
+<div id="globalErrorMessage" style="
+    display: none;
+    position: fixed;
+    top: 85px;
+    right: 30px;
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    z-index: 10000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+">
+     Preference already exists.
+</div>
+
+
 <script>
+    function showGlobalError(message) {
+    const globalBox = document.getElementById("globalErrorMessage");
+    globalBox.textContent = " " + message;
+    globalBox.style.display = "block";
+    globalBox.style.opacity = "1";
+
+    setTimeout(() => {
+        globalBox.style.transition = "opacity 0.5s ease";
+        globalBox.style.opacity = "0";
+        setTimeout(() => {
+            globalBox.style.display = "none";
+            globalBox.style.opacity = "1";
+        }, 500);
+    }, 6000);
+}
+
 function showGlobalSuccess(message) {
     const globalBox = document.getElementById("globalSuccessMessage");
     globalBox.textContent = "✓ " + message;
@@ -789,7 +849,8 @@ function showGlobalSuccess(message) {
  <!-- Modal for Add New Preference -->
 <div id="addPreferenceModal" class="modal" style="display: none;">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()" style="float:right; font-size: 24px; cursor: pointer;">&times;</span>
+    <button class="close-button" id="advanced-options-close" type="button" onclick="closeModal()">&times;</button>
+    <!-- <span class="close" onclick="closeModal()" style="float:right; font-size: 24px; cursor: pointer;">&times;</span> -->
     <h2>Add New Preference</h2>
     <form id="modalForm">
       <div class="form-group">
@@ -955,7 +1016,7 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
     </div>
       %%[ ELSE ]%%
 <div class="table-container" style="text-align: center; padding: 40px 20px;">
-<p style="font-size: 18px; color: #999;">⚠️ No preferences found. Please add a new preference to get started.</p>
+<p style="font-size: 18px; color: #999;"><span style="color: #f4d03f;">&#9888;</span> No preferences found. Please add a new preference to get started.</p>
 </div>
 %%[ENDIF]%%
     <!-- Floating Help Icon -->
@@ -982,7 +1043,8 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
 ">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <strong style="font-size: 16px;">Help & Instructions</strong>
-    <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px; color: #f80505;">&times;</span>
+    <button class="close-button" id="advanced-options-close" type="button" onclick="closeHelpModal()">&times;</button>
+    <!-- <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px; color: #f80505;">&times;</span> -->
   </div>
   <p>This section provides guidance on how to manage and understand communication preferences effectively.
      Below, each field is explained to help you navigate and configure preferences for your organization or users.
@@ -1178,10 +1240,13 @@ function UpdatePreference(data) {
 
         const prefExistMatch = responseText.match(/preferenceExist\s*:\s*"?true"?/i);
 
-        if (prefExistMatch) {
-            messageBox.innerHTML = "<span style='color: red;'>Preference already exists. Please choose a different name.</span>";
-            return;
-        }
+       if (prefExistMatch) {
+    showGlobalError("Preference already exists.");
+    messageBox.innerHTML = "<span style='color: red;'>Preference already exists.</span>";
+    setTimeout(() => location.reload(), 2000);
+    return;
+}
+
 
         showGlobalSuccess("Preference updated successfully.");
         setTimeout(() => messageBox.innerHTML = "", 5000); // auto-clear after 5s
