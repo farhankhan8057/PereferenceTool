@@ -1,8 +1,8 @@
 <html>
     <head>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-      <!-- Add this in the <head> of your HTML -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 
         <title>Pref_DE</title>
         <style>
@@ -21,13 +21,9 @@
     }
 
         .lab {
-            /* padding: 5px 30px; */
             width: auto;
-            /* border-radius: 10px; */
             font-size: 20px;
             color: rgb(0, 0, 0);
-            /* cursor: pointer;
-            display: inline-block; */
         }
 
         .bdy {
@@ -40,9 +36,6 @@
             margin-left: 10px;
             font-size: 16px;
             color: #eb1313;
-            /* position: fixed;
-            top: 170px;
-            left: 170px; */
         }
 
         .table-wrapper {
@@ -118,23 +111,11 @@ max-width: 700px;
             justify-content: Center;
         }
 
-        /*
-            .fixed_header thead {
-            background: black;
-            color: #fff;
-            } */
-
         .fixed_header th,
         .fixed_header td {
             padding: 5px;
-            /* text-align: left; */
             width: 20%;
         }
-
-        /*
-            .fixed_header th:last-child {
-            padding-right: 11px;
-            } */
 
         body {
         font-family: 'freight-sans-pro', sans-serif;
@@ -261,12 +242,6 @@ max-width: 700px;
   font-family: 'freight-sans-pro', sans-serif;
 
     }
-    @media (max-width: 768px) {
-  .modal-content {
-    width: 90%;
-    padding: 20px;
-  }
-}
 
     @keyframes slideDown {
     from {
@@ -308,7 +283,7 @@ max-width: 700px;
 
     .form-group input:focus,
     .form-group select:focus {
-    border-color: #5dade2;
+    border-color: black;
     box-shadow: 0 0 6px rgba(52, 152, 219, 0.4);
     outline: none;
     background-color: #fff;
@@ -505,14 +480,14 @@ max-width: 700px;
         font-size: 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
-        resize: vertical; /* allow vertical resize */
+        resize: vertical;
         min-height: 40px;
         box-sizing: border-box;
         width: 100%;
     }
 
     textarea {
-        min-height: 80px; /* initial height */
+        min-height: 80px;
         font-family: 'freight-sans-pro', sans-serif;
     }
 
@@ -675,6 +650,74 @@ button.newPrefButton:hover {
   color: white;
 }
 
+@media only screen and (max-width: 400px) {
+  .modal-content {
+    width: 90%;
+    margin: 10% auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn-primary {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    float: right;
+    cursor: pointer;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  #messageBox {
+    margin-top: 10px;
+    font-size: 14px;
+    color: green;
+  }
+}
+
+@media (max-width: 767px) {
+    #helpIcon {
+        bottom: 65px;
+    }
+}
 
         </style>
 
@@ -842,8 +885,6 @@ function showGlobalSuccess(message) {
     <li>Responsive design for consistent user experience.</li>
   </ul>
 </div>
-
-    <!-- Start  -->
 
             <div class="main-content">
  <!-- Modal for Add New Preference -->
@@ -1020,9 +1061,8 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
 </div>
 %%[ENDIF]%%
     <!-- Floating Help Icon -->
-<!-- Floating Help Icon -->
 <div  id="helpIcon" onclick="openHelpModal()">
-  ?
+  &#63;
 </div>
 <!-- Help Modal Panel (Bottom-Left) -->
 <div id="helpModal" style="
@@ -1040,11 +1080,11 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
     z-index: 10001;
     padding: 20px;
     font-size: 14px;
+    margin-bottom: 0.7em;
 ">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <strong style="font-size: 16px;">Help & Instructions</strong>
     <button class="close-button" id="advanced-options-close" type="button" onclick="closeHelpModal()">&times;</button>
-    <!-- <span onclick="closeHelpModal()" style="cursor: pointer; font-size: 18px; color: #f80505;">&times;</span> -->
   </div>
   <p>This section provides guidance on how to manage and understand communication preferences effectively.
      Below, each field is explained to help you navigate and configure preferences for your organization or users.
@@ -1080,7 +1120,6 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
             function keyDown(e) {
             var e = window.event || e;
             var key = e.keyCode;
-            //space pressed
             if (key == 32) {
                 e.preventDefault();
             }
@@ -1088,8 +1127,6 @@ SET @prefDERows = LookupOrderedRows("MCPM_PreferenceDE", 0, "Added_Date DESC", "
             }
 
         </script>
-        <!-- Form 1 End -->
-
         <script runat="server">
 
         </script>
@@ -1250,7 +1287,7 @@ function UpdatePreference(data) {
 
         showGlobalSuccess("Preference updated successfully.");
         setTimeout(() => messageBox.innerHTML = "", 5000); // auto-clear after 5s
-      setTimeout(() => location.reload(), 2000);
+      setTimeout(() => location.reload(), 2000); // reload page in 2 sec after update record
     })
     .catch(err => {
         loader.style.display = "none";
@@ -1287,7 +1324,7 @@ function sortTableBy(className) {
     if (!tbody) return;
 
     const rows = Array.from(tbody.querySelectorAll("tr"));
-    sortDirection[className] = !sortDirection[className]; // toggle
+    sortDirection[className] = !sortDirection[className];
 
     rows.sort((a, b) => {
         const valA = a.querySelector(`.${className}`)?.textContent.trim().toLowerCase() || "";
@@ -1317,7 +1354,6 @@ function closeModal() {
   document.getElementById("addPreferenceModal").style.display = "none";
 }
 
-// Optional: Close modal on outside click
 window.onclick = function(event) {
   const modal = document.getElementById("addPreferenceModal");
   if (event.target === modal) {
@@ -1336,7 +1372,6 @@ window.onclick = function(event) {
     document.getElementById("helpModal").style.display = "none";
   }
 
-  // Optional: Close when clicking outside the modal
   window.addEventListener("click", function(event) {
     const helpModal = document.getElementById("helpModal");
     const helpIcon = document.getElementById("helpIcon");
